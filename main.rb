@@ -13,7 +13,7 @@ def tag(tagname, self_close=true)
                 end
     end
   ensure
-    markup += block ? "\n</#{tagname}>" : ' />'
+    markup += block ? "</#{tagname}>\n" : ' />\n'
     return markup
   end
 end
