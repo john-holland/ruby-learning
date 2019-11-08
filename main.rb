@@ -1,3 +1,4 @@
+# @summary a helper function to template html markup with a dsl similar to react
 def tag(tagname, method_name: nil, self_close: true)
   define_method(method_name || tagname) do |attributes={}, &block|
     markup = "<#{tagname}" + (attributes.empty? ? '' : ' ') + attributes.map { |k,v| "#{k}=\"#{v}\"" }.join(' ') + (block ? ">\n" : '')
