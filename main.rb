@@ -1,16 +1,12 @@
-def tag(tagname, self_close=true)
-  define_method(tagname) do |attributes={}, &block|
+def tag(tagname, method_name: nil, self_close: true)
+  define_method(method_name || tagname) do |attributes={}, &block|
     markup = "<#{tagname}" + (attributes.empty? ? '' : ' ') + attributes.map { |k,v| "#{k}=\"#{v}\"" }.join(' ') + (block ? ">\n" : '')
     # accepting a block and using the call method is the same as calling yield
     #  with the exception that block is considered a parameter of the current block
     #  and thus doesn't mess with enumeration ... weird and cool!
     if block
       bv = block.call
-      markup += if bv.kind_of?(Array)
-                  bv.join('\n')
-                else
-                  bv
-                end
+      markup += bv.kind_of?(Array) ? bv.join('\n') : bv
     end
   ensure
     markup += block ? "</#{tagname}>\n" : ' />\n'
@@ -19,13 +15,13 @@ def tag(tagname, self_close=true)
 end
 
 tag('div')
-tag('p')
+tag('p', method_name: 'paragraph')
 tag('href')
-tag('input', self_close=true)
+tag('input', self_close: true)
 
 url = 'google.com'
 markup = div :name => 'test' do
-  p do
+  paragraph do
     [(href :src => url do 'test' end),
      (input :type => 'text'),
      (input :type => 'button', :value => 'press me!')]
