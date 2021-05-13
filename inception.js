@@ -22,7 +22,7 @@ const inception = {
           host: 'saito',
           dream: 'final-limbo?',
           dreamers: ['saito', 'cobb'], // cobb goes looking for saito, leaves without looking at top
-          incept: nil
+          incept: null
         }
       }
     }
@@ -62,7 +62,7 @@ const Y = (gen_func) => {
 }
 
 // our gen_func is one that can take a function that takes a param (itself), and returns a function that can take
-// return a func that takes a function that passes a function that returns a function that takes a value and nil
+// return a func that takes a function that passes a function that returns a function that takes a value and null
 // call x immediately passing it to itself to achieve recursion
 // now call the result of that method...
 
@@ -161,7 +161,7 @@ concurrent_inception = {
           host: 'saito',
           dream: 'final-limbo?',
           dreamers: ['saito', 'cobb'], // cobb goes looking for saito, leaves without looking at top
-          incept: nil
+          incept: null
         },
         {
           host: 'saito',
